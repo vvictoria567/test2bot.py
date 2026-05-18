@@ -1,0 +1,6 @@
+aiogram==3.7.0
+duckduckgo_search
+pandas
+requests
+python-dotenv
+openpyxl
