@@ -169,6 +169,9 @@ def search_brand_sync(brand: str):
 
                         url = r.get("href")
                         
+                        if not url:
+                           continue
+                        
                         if not any(market in url.lower() for market in MARKETPLACES):
                             continue
 
