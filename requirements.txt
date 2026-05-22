@@ -6,3 +6,6 @@ pandas
 requests
 python-dotenv
 openpyxl
+
+flask
+gunicorn
