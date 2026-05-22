@@ -513,17 +513,17 @@ async def main():
 
     await dp.start_polling(bot)
     
-    from flask import Flask
-    import threading
+from flask import Flask
+import threading
 
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    @app.route("/")
-    def home():
-        return "Bot is running"
+@app.route("/")
+def home():
+    return "Bot is running"
 
-    def run_bot():
-        asyncio.run(main())
+def run_bot():
+    asyncio.run(main())
 
 if __name__ == "__main__":
 
