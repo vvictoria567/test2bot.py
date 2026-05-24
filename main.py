@@ -40,7 +40,7 @@ bot = Bot(
 
 dp = Dispatcher(storage=MemoryStorage())
 
-executor = ThreadPoolExecutor(max_workers=10)
+executor = ThreadPoolExecutor(max_workers=3)
 
 user_data = {}
 
@@ -148,7 +148,7 @@ def search_brand_sync(brand: str):
         "{brand} product site:{market}",
     ]
 
-    with DDGS() as ddgs:
+    with DDGS(timeout=20) as ddgs:
 
         for market in MARKETPLACES:
          for pattern in SEARCH_PATTERNS:
@@ -517,7 +517,19 @@ async def main():
 
     print("BOT STARTED")
 
-    await dp.start_polling(bot)
+    while True:
+
+    try:
+
+        print("POLLING START")
+
+        await dp.start_polling(bot)
+
+    except Exception as e:
+
+        print("POLLING ERROR:", e)
+
+        await asyncio.sleep(5)
     
 from flask import Flask
 import threading
