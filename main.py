@@ -526,20 +526,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Bot is running"
+    return "Bot is alive"
 
 
-def start_flask():
+def run_flask():
     port = int(os.environ.get("PORT", 10000))
 
     app.run(
         host="0.0.0.0",
-        port=port
+        port=port,
+        use_reloader=False
     )
 
 
 if __name__ == "__main__":
 
-    threading.Thread(target=start_flask).start()
+    flask_thread = threading.Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
 
     asyncio.run(main())
